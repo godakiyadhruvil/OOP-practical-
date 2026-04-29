@@ -1,0 +1,35 @@
+class Employee {
+    String name = "Dhruvil";
+    String department = "IT";
+
+    void displayDetails() {
+        System.out.println("Name: " + name);
+        System.out.println("Department: " + department);
+    }
+}
+
+class Manager extends Employee {
+    int teamSize = 10;
+    String project = "AI System";
+
+    @Override
+    void displayDetails() {
+        System.out.println("Name: " + name);
+        System.out.println("Department: " + department);
+        System.out.println("Team Size: " + teamSize);
+        System.out.println("Project: " + project);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+
+        Employee e = new Employee();
+        e.displayDetails();
+
+        System.out.println();
+
+        Employee m = new Manager();
+        m.displayDetails();
+    }
+}
