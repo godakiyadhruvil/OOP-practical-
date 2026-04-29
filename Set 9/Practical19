@@ -1,0 +1,33 @@
+import java.util.*;
+
+public class Main {
+
+    public static <T extends Comparable<T>> void sortList(List<T> list) {
+        Collections.sort(list);
+    }
+
+    public static void main(String[] args) {
+
+        ArrayList<Integer> numbers = new ArrayList<>();
+        numbers.add(50);
+        numbers.add(10);
+        numbers.add(30);
+        numbers.add(20);
+
+        ArrayList<String> names = new ArrayList<>();
+        names.add("Dhruvil");
+        names.add("Raj");
+        names.add("Amit");
+        names.add("Kiran");
+
+        System.out.println("Before Sorting (Numbers): " + numbers);
+        sortList(numbers);
+        System.out.println("After Sorting (Numbers): " + numbers);
+
+        System.out.println();
+
+        System.out.println("Before Sorting (Names): " + names);
+        sortList(names);
+        System.out.println("After Sorting (Names): " + names);
+    }
+}
