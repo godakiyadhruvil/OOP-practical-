@@ -1,0 +1,25 @@
+import java.util.*;
+
+public class MusicPlaylist {
+    public static void main(String[] args) {
+        LinkedList<String> playlist = new LinkedList<>();
+
+        playlist.add("Song A");
+        playlist.add("Song B");
+        playlist.add("Song C");
+        playlist.add("Song D");
+        playlist.add("Song E");
+
+        System.out.println("Full Playlist: " + playlist);
+
+        if (!playlist.isEmpty()) {
+            System.out.println("Playing: " + playlist.removeFirst());
+            System.out.println("Playlist: " + playlist);
+        }
+
+        if (!playlist.isEmpty()) {
+            System.out.println("Skipped: " + playlist.removeLast());
+            System.out.println("Playlist: " + playlist);
+        }
+    }
+}
