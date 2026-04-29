@@ -1,0 +1,91 @@
+import java.io.*;
+
+public class FileOperations {
+
+    public static void main(String[] args) {
+
+        if (args.length < 2) {
+            System.out.println("Usage:");
+            System.out.println("copy source destination");
+            System.out.println("delete filename");
+            System.out.println("rename oldname newname");
+            return;
+        }
+
+        String command = args[0];
+
+        try {
+            switch (command.toLowerCase()) {
+
+                case "copy":
+                    if (args.length != 3) {
+                        System.out.println("Usage: copy source destination");
+                        return;
+                    }
+                    copyFile(args[1], args[2]);
+                    printProperties(new File(args[2]));
+                    break;
+
+                case "delete":
+                    if (args.length != 2) {
+                        System.out.println("Usage: delete filename");
+                        return;
+                    }
+                    File fileToDelete = new File(args[1]);
+                    if (fileToDelete.delete()) {
+                        System.out.println("File deleted successfully.");
+                    } else {
+                        System.out.println("Failed to delete file.");
+                    }
+                    break;
+
+                case "rename":
+                    if (args.length != 3) {
+                        System.out.println("Usage: rename oldname newname");
+                        return;
+                    }
+                    File oldFile = new File(args[1]);
+                    File newFile = new File(args[2]);
+
+                    if (oldFile.renameTo(newFile)) {
+                        System.out.println("File renamed successfully.");
+                        printProperties(newFile);
+                    } else {
+                        System.out.println("Failed to rename file.");
+                    }
+                    break;
+
+                default:
+                    System.out.println("Invalid command.");
+            }
+
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found: " + e.getMessage());
+        } catch (IOException e) {
+            System.out.println("IO Error: " + e.getMessage());
+        }
+    }
+
+    public static void copyFile(String source, String destination) throws IOException {
+        FileInputStream fis = new FileInputStream(source);
+        FileOutputStream fos = new FileOutputStream(destination);
+
+        int data;
+        while ((data = fis.read()) != -1) {
+            fos.write(data);
+        }
+
+        fis.close();
+        fos.close();
+        System.out.println("File copied successfully.");
+    }
+
+    public static void printProperties(File file) {
+        System.out.println("File Name: " + file.getName());
+        System.out.println("Absolute Path: " + file.getAbsolutePath());
+        System.out.println("File Size: " + file.length() + " bytes");
+        System.out.println("Readable: " + file.canRead());
+        System.out.println("Writable: " + file.canWrite());
+        System.out.println("Last Modified: " + new java.util.Date(file.lastModified()));
+    }
+}
